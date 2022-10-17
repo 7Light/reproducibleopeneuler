@@ -11,20 +11,28 @@ unpack the differenc packages and compare the results using the build-compare sc
 
 Steps:
 
-1.安装libfaketime：https://github.com/opensourceways/reproducible-builds-libfaketime
+1.安装libfaketime：
+1、下载https://github.com/opensourceways/reproducible-builds-libfaketime
+2、make
+3、make install
+
 
 2.设置libfaketime参数，打桩datetime和hostname
 
 ```
 echo 'export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1' >> /etc/profile
 echo 'export FAKETIME="2022-05-01 11:12:13"' >> /etc/profile
-echo 'export SOURCE_DATE_EPOCH=1' >> /etc/profile
-echo 'export PYTHONHASHSEED=0' >> /etc/profile
 echo 'export FAKEHOSTNAME=fakename' >> /etc/profile
 ```
+
+2.5:解决python在源码包编译过程中因为时间&随机数产生的二进制差异
+
+echo 'export SOURCE_DATE_EPOCH=1' >> /etc/profile
+echo 'export PYTHONHASHSEED=0' >> /etc/profile
+
 3.使用OBS构建两次软件包 OBS rebuild packages twice locally from software source
 
-4.checksum256比较两个软件包是否一致
-
-5.如果两次构建软件包checksum256不一致，使用unpacker工具解压两个软件包：unpacker.py
-6.解压结果输入diffoscope获取不一致对比
+4.使用unpacker工具解压两个软件包：
+`python unpacker.py 第一个包的路径 第二个包的路径`
+6.安装diffoscope : yum install diffoscope
+解压结果输入diffoscope获取不一致对比:diffoscope 第一个文件路径 第二个文件路径 --html xxx.html
