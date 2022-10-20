@@ -10,8 +10,8 @@ within opensource libfaketime in Open Build Service(OBS),
 unpack the differenc packages and compare the results using the build-compare script (diffoscope) that abstracts away some unavoidable (or unimportant) differences.
 
 Steps:  
-1.install libfaketime：  
-Download libfaketime source https://github.com/opensourceways/reproducible-builds-libfaketime  
+1.Install libfaketime：  
+get libfaketime source https://github.com/opensourceways/reproducible-builds-libfaketime  
 ``make``  
 ``make install``  
 2.To mock datetime and hostname, set the libfaketime environment  
