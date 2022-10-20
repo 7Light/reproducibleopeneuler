@@ -1,0 +1,3 @@
+[submodule "reproducible-builds-libfaketime"]
+	path = reproducible-builds-libfaketime
+	url = https://github.com/opensourceways/reproducible-builds-libfaketime
