@@ -11,13 +11,13 @@ unpack the differenc packages and compare the results using the build-compare sc
 
 Steps:
 
-1.install libfaketime：
-1)Download source https://github.com/opensourceways/reproducible-builds-libfaketime  
-2)``make``  
-3)``make install``  
+1.install libfaketime：  
+Download source https://github.com/opensourceways/reproducible-builds-libfaketime  
+``make``  
+``make install``  
 
 
-2.设置libfaketime参数，打桩datetime和hostname
+2.To mock datetime and hostname, set the libfaketime environment  
 
 ```
 echo 'export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1' >> /etc/profile
@@ -25,12 +25,12 @@ echo 'export FAKETIME="2022-05-01 11:12:13"' >> /etc/profile
 echo 'export FAKEHOSTNAME=fakename' >> /etc/profile
 ```
 
-2.5:解决python在源码包编译过程中因为时间&随机数产生的二进制差异
-
-echo 'export SOURCE_DATE_EPOCH=1' >> /etc/profile
-echo 'export PYTHONHASHSEED=0' >> /etc/profile
-
-3.使用OBS构建两次软件包 OBS rebuild packages twice locally from software source
+3.Solve the binary differences caused by time & random numbers in Python during the compilation of source packages  
+```
+echo 'export SOURCE_DATE_EPOCH=1' >> /etc/profile  
+echo 'export PYTHONHASHSEED=0' >> /etc/profile  
+```
+4.使用OBS构建两次软件包 OBS rebuild packages twice locally from software source
 
 4.使用unpacker工具解压两个软件包：
 `python unpacker.py 第一个包的路径 第二个包的路径`
