@@ -12,8 +12,10 @@ unpack the differenc packages and compare the results using the build-compare sc
 Steps:  
 1.Install libfaketime：  
 get libfaketime source https://github.com/opensourceways/reproducible-builds-libfaketime  
-``make``  
-``make install``  
+```
+make
+make install
+```
 2.To mock datetime and hostname, set the libfaketime environment  
 ```
 echo 'export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1' >> /etc/profile
