@@ -12,9 +12,9 @@ unpack the differenc packages and compare the results using the build-compare sc
 Steps:
 
 1.install libfaketime：
-1)Download source https://github.com/opensourceways/reproducible-builds-libfaketime
-2)``make``
-3)``make install``
+1)Download source https://github.com/opensourceways/reproducible-builds-libfaketime  
+2)``make``  
+3)``make install``  
 
 
 2.设置libfaketime参数，打桩datetime和hostname
