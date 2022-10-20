@@ -30,9 +30,13 @@ echo 'export FAKEHOSTNAME=fakename' >> /etc/profile
 echo 'export SOURCE_DATE_EPOCH=1' >> /etc/profile  
 echo 'export PYTHONHASHSEED=0' >> /etc/profile  
 ```
-4.使用OBS构建两次软件包 OBS rebuild packages twice locally from software source
+4.OBS rebuild packages twice locally from software source
 
-4.使用unpacker工具解压两个软件包：
-`python unpacker.py 第一个包的路径 第二个包的路径`
-6.安装diffoscope : yum install diffoscope
-解压结果输入diffoscope获取不一致对比:diffoscope 第一个文件路径 第二个文件路径 --html xxx.html
+5.Unpack your two packages using the unpacker.py tool  
+`python unpacker.py ${first package path} ${second package path}`  
+6.Display differences using diffoscope : 
+```
+yum install diffoscope  
+diffoscope ${first file path} ${second file path} --html diff.html
+```
+
