@@ -27,8 +27,21 @@ echo 'export FAKEHOSTNAME=fakename' >> /etc/profile
 echo 'export SOURCE_DATE_EPOCH=1' >> /etc/profile  
 echo 'export PYTHONHASHSEED=0' >> /etc/profile  
 ```
-4. OBS rebuild packages twice locally from software source
-5. Unpack your two packages using the unpacker.py tool  
+4. We added a blacklist and whitelist mechanism to libfaketime, In blacklist mode, libfaketime only hooks commands in the blacklist; In white list mode, libfaketime will skip the commands in the white list and hook all other commands.
+   Users can use the blacklist or whitelist function by downloading the corresponding branch. For example:
+```
+# blacklist mode
+export BLACKLIST=ls,make
+
+# whitelist mode
+export WHITELIST=ls,make
+```
+5. In OBS, the hostname used in the build will be entered into the rpm package and the two builds will be inconsistent. Therefore, we also integrate the function of hooking hostname in libfaketime.This function is currently integrated in the whitelist branch.
+```
+export FAKENAME=fakename
+```
+6. OBS rebuild packages twice locally from software source
+7. Unpack your two packages using the unpacker.py tool  
 ```
 python unpacker.py ${first package path} ${second package path}
 ```
