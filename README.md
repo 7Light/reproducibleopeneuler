@@ -45,7 +45,7 @@ export FAKENAME=fakename
 ```
 python unpacker.py ${first package path} ${second package path}
 ```
-6. Display differences using diffoscope : 
+8. Display differences using diffoscope : 
 ```
 yum install diffoscope  
 diffoscope ${first file path} ${second file path} --html diff.html
